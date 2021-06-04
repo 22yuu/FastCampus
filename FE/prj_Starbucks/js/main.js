@@ -47,3 +47,9 @@ fadeEls.forEach(function(fadeEl, index) { /* fadEl - 각각의 반복되는 fade
     });
 });
 
+// new Sipwer(선택자, 옵션)
+new Swiper('.notice-line .swiper-container', {
+    direction : 'vertical',
+    autoplay: true,
+    loop:true,
+});
