@@ -73,6 +73,7 @@ new Swiper('.promotion .swiper-container', {
     }
 });
 
+// 프로모션 토글
 const promotionEl = document.querySelector('.promotion');
 const promotionToggleBtn = document.querySelector('.toggle-promotion');
 let isHidePromotion = false;
@@ -88,3 +89,26 @@ promotionToggleBtn.addEventListener('click', function () {
     }
 
 });
+
+
+// 범위 랜덤 함수 (소수점 2자리까지)
+function random(min, max) {
+    // `.toFiexed()`를 통해 반환된 문자 데이터를,
+    // `parseFloat()`을 통해 소수점을 가지는 숫자 데이터로 변환
+    return parseFloat((Math.random() * (max - min) + min).toFixed(2))
+}
+// 유튜브 영상 위에 둥둥 떠 있는 아이콘들
+function floatingObject(selector, delay, size) {
+    //gsap.to(요소, 시간, 옵션);
+    gsap.to(selector, random(1.5, 2.5), {
+        y: size,
+        repeat: -1, // -1은 무한반복 gsap에서 지원하는 기능
+        yoyo: true, // 한번 재생한 애니메이션을 다시 뒤로 재생 여기서는 위에서 아래로 내려갔다가 다시 아래에서 위로 올라가는 애니메이션을 구현
+        ease: Power1.easeInOuteaseInOut,
+        delay: random(0, delay)
+    });
+}
+
+floatingObject('.floating1', 1, 15);
+floatingObject('.floating2', .1, 15);
+floatingObject('.floating3', 1.5, 20);
