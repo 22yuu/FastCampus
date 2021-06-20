@@ -440,10 +440,18 @@ header .badges .badge {
     font-size: 30px;
 }
 
+
+/* NOTICE PROMOTION */
 .notice .promotion {
     height: 693px;
     background-color: #f6f5ef;
     position: relative;
+    transition: height .4s;
+    overflow: hidden;
+}
+
+.notice .promotion.hide {
+    height: 0;
 }
 
 .notice .promotion .swiper-container {
@@ -530,3 +538,4 @@ header .badges .badge {
     background-color: #333;
     color: #fff;
 }
+
