@@ -64,10 +64,10 @@ new Swiper('.promotion .swiper-container', {
     // },
     pagination: {
         el: '.promotion .swiper-pagination', // 페이지 번호 요소 선택자
-        clickable : true // 사용자의 페이지 번호 요소 제어
+        clickable : true // 사용자의 페이지 번호 요소 제어 가능 여부
     },
     
-    navigation {
+    navigation :{
         prevEl: '.promotion .swiper-prev',
         nextEl: '.promotion .swiper-next'
     }
