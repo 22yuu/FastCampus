@@ -16,9 +16,10 @@ searchInputEl.addEventListener('blur', function() {
 });
 
 const badgeEl = document.querySelector('header .badges');
+const toTopEl = document.querySelector('#to-top');
 
 /* document는 하나의 html이라면 window는 하나의 브라우저 탭이다. 즉, 프로젝트가 출력되는 화면 자체를 의미 */
-window.addEventListener('scroll', _.throttle(function() {
+window.addEventListener('scroll', _.throttle(function() { /*loadash 라이브러리*/
     console.log(window.scrollY);
     if(window.scrollY > 500) {
         // 배지 숨기기
@@ -26,16 +27,33 @@ window.addEventListener('scroll', _.throttle(function() {
             opacity: 0,
             display:'none'
         });
+        // Top 버튼보이기!
+        gsap.to(toTopEl, .2, {
+            x: 0 // 원래 위치 0
+        });
+
     }else {
         // 배지 보이기
         gsap.to(badgeEl, .6, {
             opacity: 1,
             display:'block'
         });
+         
+        // Top 버튼 숨기기
+        gsap.to(toTopEl, .2, {
+            x: 100 // 100 픽셀 지점으로 이동
+        });
     }
     
 }, 300)); // 300 - 0.3초
 // _.throttle(함수, 시간) 
+
+
+toTopEl.addEventListener('click', function () {
+    gsap.to(window, .7, {
+        scrollTo: 0
+    });
+});
 
 
 const fadeEls = document.querySelectorAll('.visual .fade-in');
@@ -59,9 +77,9 @@ new Swiper('.promotion .swiper-container', {
     spaceBetween: 10, // 슬라이드 사이 여백
     centeredSlides: true, // 1번 슬라이드가 가운데 보이기
     loop: true,
-    // autoplay: {
-    //     delay:5000 // default : 3000 (3초)
-    // },
+    autoplay: {
+        delay:5000 // default : 3000 (3초)
+    },
     pagination: {
         el: '.promotion .swiper-pagination', // 페이지 번호 요소 선택자
         clickable : true // 사용자의 페이지 번호 요소 제어 가능 여부
@@ -70,6 +88,17 @@ new Swiper('.promotion .swiper-container', {
     navigation :{
         prevEl: '.promotion .swiper-prev',
         nextEl: '.promotion .swiper-next'
+    }
+});
+
+new Swiper('.awards .swiper-container', {
+    autoplay: true,
+    loop:true,
+    spaceBetween: 30,
+    slidesPerView: 5,
+    navigation: {
+        prevEl: '.awards .swiper-prev',
+        nextEl: '.awards .swiper-next'
     }
 });
 
@@ -124,3 +153,6 @@ spyEls.forEach(function (spyEl) {
     .addTo(new ScrollMagic.Controller()); // 요소들을 감시하는 메서드
     
 });
+
+const thisYear = document.querySelector('.this-year');
+thisYear.textContent = new Date().getFullYear(); // 2021
